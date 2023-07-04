@@ -7,7 +7,8 @@ namespace hr_system_backend
     public AutoMapper() : base()
     {
       CreateMap<Admin, GetAdminCredDto>();
-
+      CreateMap<AddAdminDto, AdminLoginDto>();
+      CreateMap<AddAdminDto, Admin>();
     }
   }
 }

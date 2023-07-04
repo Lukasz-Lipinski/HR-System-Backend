@@ -19,20 +19,27 @@ namespace hr_system_backend.Services
       this.authService = authService;
       this.httpContextAccessor = httpContextAccessor;
     }
-    public Task<Response<string>> AddUser(AdminLoginDto newAdmin)
+    public async Task<GetAdminCredDto> CreateAccount(AddAdminDto addAdminCred)
     {
-      throw new NotImplementedException();
-    }
+      var foundAdmin = await this.FindAdmin(this.mapper.Map<AdminLoginDto>(addAdminCred));
 
-    public Task<Response<string>> Login(AdminLoginDto admin)
-    {
-      throw new NotImplementedException();
+      if (foundAdmin is null)
+      {
+        var newAdmin = this.mapper.Map<Admin>(addAdminCred);
+        newAdmin.Password = this.authService.HashPassword(addAdminCred.Password);
+        this.dbContext.Attach(newAdmin);
+        await this.dbContext.SaveChangesAsync();
+
+        var resAdmin = this.mapper.Map<GetAdminCredDto>(newAdmin);
+        resAdmin.Token = this.authService.GenerateToken(newAdmin);
+        return resAdmin;
+      }
+      return null;
     }
     public async Task<Admin> FindAdmin(AdminLoginDto admin)
     {
       var foundAdmin = await this.dbContext.Admins
         .FirstOrDefaultAsync(a => a.Email.ToLower() == admin.Email.ToLower());
-
       if (foundAdmin is null)
       {
         return null;
@@ -45,7 +52,6 @@ namespace hr_system_backend.Services
       else
       {
         return null;
-
       }
 
     }

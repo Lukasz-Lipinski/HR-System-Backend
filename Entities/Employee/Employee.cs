@@ -1,6 +1,6 @@
 namespace hr_system_backend.Entities
 {
-  public class User : Person
+  public class Employee : Person
   {
     public string Position { get; set; }
     public int Daysoff { get; set; }

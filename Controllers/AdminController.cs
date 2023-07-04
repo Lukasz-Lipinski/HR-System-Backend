@@ -27,10 +27,16 @@ namespace hr_system_backend.Controllers
       return Ok(res);
     }
     [HttpPost("register")]
-    public IActionResult CreateAdminAccount([FromBody] AdminCred newAdminData)
+    public async Task<ActionResult<Response<GetAdminCredDto>>> CreateAdminAccount([FromBody] AdminCred newAdminData)
     {
+      var res = new Response<GetAdminCredDto>();
       var newAdmin = new AddAdminDto(newAdminData);
-      return Ok(newAdmin);
+      res.Data = await this.adminService.CreateAccount(newAdmin);
+      if (res.Data is null)
+      {
+        return Conflict("Admin already exsists!");
+      }
+      return Ok(res);
     }
     [HttpPost("login")]
     public async Task<ActionResult<Response<GetAdminCredDto>>> Login([FromBody] AdminLoginDto creds)
