@@ -9,6 +9,8 @@ namespace hr_system_backend
       CreateMap<Admin, GetAdminCredDto>();
       CreateMap<AddAdminDto, AdminLoginDto>();
       CreateMap<AddAdminDto, Admin>();
+      CreateMap<Superior, GetSuperiorDto>();
+      CreateMap<Employee, GetEmployeeForSuperior>();
     }
   }
 }

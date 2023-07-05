@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hr_system_backend.Entities.Database;
 
@@ -11,9 +12,11 @@ using hr_system_backend.Entities.Database;
 namespace hr_system_backend.Migrations
 {
     [DbContext(typeof(HRSystemDbContext))]
-    partial class HRSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230705111511_SuperiorEmployeesAdded")]
+    partial class SuperiorEmployeesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,10 +57,10 @@ namespace hr_system_backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("962ab496-c39e-4a41-9275-848f2f8c9433"),
+                            Id = new Guid("3fbe3288-5b9a-4462-bc85-13719521fd58"),
                             Email = "test@test.com",
                             Name = "test",
-                            Password = "$2a$11$uYauwsIeyZ8VNoN0kiAoIu6BFmAtgoa65sxdFUfI6t7ZIDpvhHPci",
+                            Password = "$2a$11$Gkrli/h5WmgBDGvJZ/E5Sup/VxOP9Lozp/EZJZGAn4/e3/IxMwKQm",
                             Role = 3,
                             Surname = "test"
                         });
@@ -118,6 +121,9 @@ namespace hr_system_backend.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("EmployeesId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -136,20 +142,6 @@ namespace hr_system_backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Superiors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("3024acd1-2e51-4135-b8dc-db6f07cc88ee"),
-                            Area = "Casting",
-                            Daysoff = 26,
-                            Email = "superior@example.com",
-                            Name = "Superior name",
-                            Position = "Supirior Manager",
-                            Role = 1,
-                            Status = 1,
-                            Surname = "Superior surname"
-                        });
                 });
 
             modelBuilder.Entity("hr_system_backend.Entities.Employee", b =>

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hr_system_backend.Entities.Database;
 
@@ -11,9 +12,11 @@ using hr_system_backend.Entities.Database;
 namespace hr_system_backend.Migrations
 {
     [DbContext(typeof(HRSystemDbContext))]
-    partial class HRSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230705111951_SuperiorMockAdded")]
+    partial class SuperiorMockAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,10 +57,10 @@ namespace hr_system_backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("962ab496-c39e-4a41-9275-848f2f8c9433"),
+                            Id = new Guid("c4010e66-f170-49ef-a359-c3e973e0cc74"),
                             Email = "test@test.com",
                             Name = "test",
-                            Password = "$2a$11$uYauwsIeyZ8VNoN0kiAoIu6BFmAtgoa65sxdFUfI6t7ZIDpvhHPci",
+                            Password = "$2a$11$.F4g9i0YeA8XyyjO72qQdeWfvzjDacqUFc4TLGdB1UtGiHcgAc7CK",
                             Role = 3,
                             Surname = "test"
                         });
@@ -118,6 +121,9 @@ namespace hr_system_backend.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("EmployeesId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -140,10 +146,11 @@ namespace hr_system_backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3024acd1-2e51-4135-b8dc-db6f07cc88ee"),
+                            Id = new Guid("a04cd6b3-ed0d-43d5-b9d8-0ce1d21412a2"),
                             Area = "Casting",
                             Daysoff = 26,
                             Email = "superior@example.com",
+                            EmployeesId = new Guid("00000000-0000-0000-0000-000000000000"),
                             Name = "Superior name",
                             Position = "Supirior Manager",
                             Role = 1,
