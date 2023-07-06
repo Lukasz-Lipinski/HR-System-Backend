@@ -17,16 +17,49 @@ namespace hr_system_backend.Controllers
     }
 
     [Authorize]
-    [HttpGet("{name}")]
-    public async Task<ActionResult<Response<List<GetSuperiorDto>>>> GetSuperiorsByName(string name)
+    [HttpGet("all")]
+    public async Task<ActionResult<Response<List<GetSuperiorDto>>>> GetAllSuperiors()
     {
-      var res = new Response<List<GetSuperiorDto>>();
-      if (String.IsNullOrWhiteSpace(name))
+      var superiors = await this.superiorService.GetAllSuperiors();
+      var res = new Response<List<GetSuperiorDto>>()
       {
-        return Content("Not found elements fullfill these criterias");
+        Data = superiors.Select(s => this.mapper.Map<GetSuperiorDto>(s)).ToList()
+
       };
-      var foundSuperiors = await this.superiorService.FindAllSuperiorsByName(name);
-      res.Data = foundSuperiors.Select(s => this.mapper.Map<GetSuperiorDto>(s)).ToList();
+      return Ok(res);
+    }
+    [Authorize]
+    [HttpGet("find-by-phrase/{phrase}")]
+    public async Task<ActionResult<Response<List<GetSuperiorDto>>>> FilterByName(string phrase)
+    {
+      var foundSuperiors = await this.superiorService.FindByNameOrSurname(phrase);
+
+      if (foundSuperiors is null)
+      {
+        return NoContent();
+      }
+
+      var res = new Response<List<GetSuperiorDto>>()
+      {
+        Data = foundSuperiors.Select(s => this.mapper.Map<GetSuperiorDto>(s)).ToList()
+      };
+      return Ok(res);
+    }
+    [Authorize]
+    [HttpGet("find-by-position/{position}")]
+    public async Task<ActionResult<List<GetSuperiorDto>>> GetSuperiorsByPosition(string position)
+    {
+      var filteredSuperiors = await this.superiorService.FindByPosition(position);
+
+      if (filteredSuperiors is null)
+      {
+        return NoContent();
+      }
+
+      var res = new Response<List<GetSuperiorDto>>
+      {
+        Data = filteredSuperiors.Select(s => this.mapper.Map<GetSuperiorDto>(s)).ToList()
+      };
 
       return Ok(res);
     }

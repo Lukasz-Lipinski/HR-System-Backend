@@ -10,7 +10,10 @@ namespace hr_system_backend
       CreateMap<AddAdminDto, AdminLoginDto>();
       CreateMap<AddAdminDto, Admin>();
       CreateMap<Superior, GetSuperiorDto>();
-      CreateMap<Employee, GetEmployeeForSuperior>();
+      CreateMap<Superior, GetSuperiorForEmployeeDto>();
+      CreateMap<Employee, GetEmployeeForSuperiorDto>();
+      CreateMap<Employee, GetEmployeeDto>();
     }
+
   }
 }

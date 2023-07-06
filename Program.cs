@@ -64,9 +64,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
       };
     }
   );
+
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ISuperiorService, SuperiorService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
