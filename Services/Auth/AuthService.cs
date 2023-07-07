@@ -1,7 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using hr_system_backend.Entities;
-using Microsoft.IdentityModel.Tokens;
 
 namespace hr_system_backend.Services
 {
@@ -21,9 +20,6 @@ namespace hr_system_backend.Services
     public string GenerateToken(Admin admin)
     {
       var claims = new List<Claim>{
-        new Claim(ClaimTypes.Name, admin.Name),
-        new Claim(ClaimTypes.Surname, admin.Surname),
-        new Claim(ClaimTypes.Email, admin.Email),
         new Claim(ClaimTypes.NameIdentifier, admin.Id.ToString())
       };
       var appSettings = this.configuration.GetSection("Token").Value;

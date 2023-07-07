@@ -67,24 +67,31 @@ namespace hr_system_backend.Controllers
 
       return Ok(res);
     }
-
-    [HttpPut("update/{id}")]
+    [Authorize]
+    [HttpPut("update-cred/{id}")]
     public async Task<ActionResult<Response<GetEmployeeDto>>> Update(Guid id, UpdateEmployeeDto employeeData)
     {
       var updatedCredentials = await employeeService.UpdateEmployeeCred(id, employeeData);
-
-      if (updatedCredentials is null)
-      {
-        return NotFound();
-      }
-
       var res = new Response<GetEmployeeDto>
       {
-        Data = updatedCredentials
+        Data = this.mapper.Map<GetEmployeeDto>(updatedCredentials)
       };
       return Ok(res);
-
     }
+    [Authorize]
+    [HttpPut("UpdateSuprior/{id}")]
+    public async Task<ActionResult<GetEmployeeDto>> UpdateSuprior(Guid superiorId, Guid employeeId)
+    {
+      var superior = await this.employeeService.GetSuperiorById(superiorId);
 
+      if (superior is null)
+      {
+        return NotFound("Users not found");
+      };
+
+      await this.employeeService.UpdateSuperior(employeeId, superior);
+      var updatedEmployeeCred = this.mapper.Map<GetEmployeeDto>(this.employeeService.GetEmployee(employeeId));
+      return Ok(updatedEmployeeCred);
+    }
   }
 }

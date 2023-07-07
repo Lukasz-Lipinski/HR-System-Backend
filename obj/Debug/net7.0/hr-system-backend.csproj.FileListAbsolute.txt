@@ -164,3 +164,8 @@ C:\Projects\Fullstack\hr-system\Backend\obj\Debug\net7.0\refint\hr-system-backen
 C:\Projects\Fullstack\hr-system\Backend\obj\Debug\net7.0\hr-system-backend.pdb
 C:\Projects\Fullstack\hr-system\Backend\obj\Debug\net7.0\hr-system-backend.genruntimeconfig.cache
 C:\Projects\Fullstack\hr-system\Backend\obj\Debug\net7.0\ref\hr-system-backend.dll
+C:\Projects\Fullstack\hr-system\Backend\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
+C:\Projects\Fullstack\hr-system\Backend\bin\Debug\net7.0\MailKit.dll
+C:\Projects\Fullstack\hr-system\Backend\bin\Debug\net7.0\MimeKit.dll
+C:\Projects\Fullstack\hr-system\Backend\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
+C:\Projects\Fullstack\hr-system\Backend\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll

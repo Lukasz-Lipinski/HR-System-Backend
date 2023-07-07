@@ -7,6 +7,8 @@ namespace hr_system_backend.Services
   {
     private readonly HRSystemDbContext dbContext;
     private readonly IMapper mapper;
+    public async Task<Employee> GetEmployee(Guid id) => await this.dbContext.Employees.FirstOrDefaultAsync(e => e.Id == id);
+    public async Task<Superior> GetSuperiorById(Guid id) => await this.dbContext.Superiors.FirstOrDefaultAsync(s => s.Id == id);
 
     public EmployeeService(HRSystemDbContext dbContext, IMapper mapper)
     {
@@ -61,46 +63,41 @@ namespace hr_system_backend.Services
       return allEmplyees.Select(e => this.mapper.Map<GetEmployeeDto>(e)).ToList();
     }
 
-    public async Task<GetEmployeeDto> UpdateEmployeeCred(Guid id, UpdateEmployeeDto employee)
+    public async Task<GetEmployeeDto> UpdateEmployeeCred(Guid employeeId, UpdateEmployeeDto employee)
     {
-      if (this.CheckIfEmployeeExsists(id))
-      {
-        return null; // user doesn't exsist
-      }
-
-      var superior = await this.FindSuperior(id);
-      var updatedEmployeeCred = new Employee
-      {
-        Id = id,
-        Name = employee.Name,
-        Surname = employee.Surname,
-        Email = employee.Email,
-        Role = employee.Role,
-        Position = employee.Position,
-        Daysoff = employee.Daysoff,
-        Status = employee.Status,
-        Superior = superior
-      };
-
-      this.dbContext.Attach(updatedEmployeeCred);
+      var dbEmployee = await this.dbContext.Employees.FirstOrDefaultAsync(e => e.Id == employeeId);
+      dbEmployee.Id = employeeId;
+      dbEmployee.Name = employee.Name;
+      dbEmployee.Surname = employee.Surname;
+      dbEmployee.Email = employee.Email;
+      dbEmployee.Role = employee.Role;
+      dbEmployee.Position = employee.Position;
+      dbEmployee.Daysoff = employee.Daysoff;
+      dbEmployee.Status = employee.Status;
       await this.dbContext.SaveChangesAsync();
-
-      return this.mapper.Map<GetEmployeeDto>(updatedEmployeeCred);
+      return this.mapper.Map<GetEmployeeDto>(dbEmployee);
     }
-    private bool CheckIfEmployeeExsists(Guid id)
+    public async Task<GetEmployeeDto> UpdateSuperior(Guid employeeId, Superior superior)
     {
-      var employee = this.dbContext.Employees
-        .AsNoTracking()
-        .FirstOrDefaultAsync(e => e.Id == id);
-      return employee is null ? false : true;
+      var employee = await this.dbContext.Employees.FirstOrDefaultAsync(e => e.Id == employeeId);
+      employee.Superior = superior;
+      employee.SuperiorId = superior.Id;
+
+      await this.dbContext.SaveChangesAsync();
+      return this.mapper.Map<GetEmployeeDto>(employee);
     }
-    private async Task<Superior> FindSuperior(Guid employeeId)
+    private async Task<Superior> FindSuperiorByEmployeeId(Guid employeeId)
     {
       return await this.dbContext.Employees
         .AsNoTracking()
         .Where(e => e.Id == employeeId)
         .Select(s => s.Superior)
         .FirstOrDefaultAsync();
+    }
+
+    public Task<GetEmployeeDto> UpdateSuperior(Superior superior, Employee employee)
+    {
+      throw new NotImplementedException();
     }
   }
 }

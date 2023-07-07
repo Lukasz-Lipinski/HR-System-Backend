@@ -52,5 +52,51 @@ namespace hr_system_backend.Controllers
       res.Data = admin;
       return Ok(res);
     }
+
+    [Authorize]
+    [HttpPut("update-email")]
+    public async Task<ActionResult<Response<GetAdminCredDto>>> UpdateAdminEmail([FromBody] string newEmail)
+    {
+      var newAdminCred = await this.adminService.ChangeAdminEmail(newEmail);
+      if (newAdminCred is null)
+      {
+        return NotFound("Not found");
+      }
+      var res = new Response<GetAdminCredDto>
+      {
+        Data = newAdminCred
+      };
+      return Ok(res);
+    }
+    [Authorize]
+    [HttpPut("update-cred")]
+    public async Task<ActionResult<Response<GetAdminCredDto>>> UpdateAdminCred([FromBody] UpdateAdminCredDto updateAdminCred)
+    {
+      var newAdminCred = await this.adminService.UpdateAdminCred(updateAdminCred);
+      if (newAdminCred is null)
+      {
+        return NotFound("Not found");
+      }
+      var res = new Response<GetAdminCredDto>
+      {
+        Data = newAdminCred
+      };
+      return Ok(res);
+    }
+    [Authorize]
+    [HttpPut("update-password")]
+    public async Task<ActionResult<Response<GetAdminCredDto>>> UpdateAdminPassword([FromBody] string newPassword)
+    {
+      var newAdminCred = await this.adminService.ChangeAdminPassword(newPassword);
+      if (newAdminCred is null)
+      {
+        return NotFound("Not found");
+      }
+      var res = new Response<GetAdminCredDto>
+      {
+        Data = newAdminCred
+      };
+      return Ok(res);
+    }
   }
 }
