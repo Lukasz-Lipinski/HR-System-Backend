@@ -69,17 +69,17 @@ namespace hr_system_backend.Controllers
       return Ok(res);
     }
     [Authorize]
-    [HttpPut("update-cred")]
-    public async Task<ActionResult<Response<GetAdminCredDto>>> UpdateAdminCred([FromBody] UpdateAdminCredDto updateAdminCred)
+    [HttpPut("update-credentials")]
+    public async Task<ActionResult<Response<string>>> UpdateAdminCred([FromBody] UpdateAdminCredDto updateAdminCred)
     {
       var newAdminCred = await this.adminService.UpdateAdminCred(updateAdminCred);
       if (newAdminCred is null)
       {
         return NotFound("Not found");
       }
-      var res = new Response<GetAdminCredDto>
+      var res = new Response<string>
       {
-        Data = newAdminCred
+        Data = "Data updated successfully"
       };
       return Ok(res);
     }
@@ -96,6 +96,25 @@ namespace hr_system_backend.Controllers
       {
         Data = newAdminCred
       };
+      return Ok(res);
+    }
+
+    [Authorize]
+    [HttpPost("check-password")]
+    public async Task<ActionResult<Response<bool>>> CheckAdminPassword([FromBody] AdminLoginDto cred)
+    {
+      var admin = await this.adminService.FindAdmin(cred);
+
+      var res = new Response<bool>
+      {
+        Data = admin is null ? false : true
+      };
+
+      if (admin is null)
+      {
+        return BadRequest(res);
+      }
+
       return Ok(res);
     }
   }

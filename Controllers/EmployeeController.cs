@@ -79,7 +79,7 @@ namespace hr_system_backend.Controllers
       return Ok(res);
     }
     [Authorize]
-    [HttpPut("UpdateSuprior/{id}")]
+    [HttpPut("update-suprior/{id}")]
     public async Task<ActionResult<GetEmployeeDto>> UpdateSuprior(Guid superiorId, Guid employeeId)
     {
       var superior = await this.employeeService.GetSuperiorById(superiorId);
