@@ -117,5 +117,24 @@ namespace hr_system_backend.Controllers
 
       return Ok(res);
     }
+
+
+    [HttpPost("check-email")]
+    public async Task<ActionResult<Response<bool>>> CheckEmail([FromBody] AdminLoginDto body)
+    {
+      bool isEmail = await this.adminService.CheckAdminEmail(body.Email);
+
+      var res = new Response<bool>
+      {
+        Data = isEmail
+      };
+
+      if (isEmail)
+      {
+        return Conflict(res);
+      }
+
+      return Ok(res);
+    }
   }
 }

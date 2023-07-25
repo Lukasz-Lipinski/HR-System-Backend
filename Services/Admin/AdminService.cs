@@ -96,5 +96,15 @@ namespace hr_system_backend.Services
       await this.dbContext.SaveChangesAsync();
       return this.mapper.Map<GetAdminCredDto>(admin);
     }
+
+    public async Task<bool> CheckAdminEmail(string email)
+    {
+      var isEmail = await this.dbContext.Admins
+        .AsNoTracking()
+        .Where(a => a.Email == email)
+        .FirstOrDefaultAsync();
+
+      return isEmail is not null ? true : false;
+    }
   }
 }
