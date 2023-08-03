@@ -99,5 +99,42 @@ namespace hr_system_backend.Services
     {
       throw new NotImplementedException();
     }
+
+    public async Task<Employee> CreateEmployee(CreateEmployeeDto employee)
+    {
+      var superior = await this.dbContext.Superiors.AsNoTracking().FirstOrDefaultAsync(s => s.Id == employee.SuperiorId);
+
+      if (superior == null)
+      {
+        return null;
+      }
+
+      var newEmployee = new Employee
+      {
+        Name = employee.Name,
+        Surname = employee.Surname,
+        Email = employee.Email,
+        Role = employee.Role,
+        Position = employee.Position,
+        Daysoff = employee.Daysoff,
+        Status = employee.Status,
+        Superior = superior,
+        SuperiorId = employee.SuperiorId,
+      };
+
+      this.dbContext.Employees.Add(newEmployee);
+      await this.dbContext.SaveChangesAsync();
+
+      return newEmployee;
+    }
+
+    Task<GetEmployeeDto> IEmployeeService.CreateEmployee(CreateEmployeeDto employee)
+    {
+      throw new NotImplementedException();
+    }
+
+    public Task<Employee> CheckEmail(string email) => this.dbContext.Employees.AsNoTracking().FirstOrDefaultAsync(e => e.Email == email);
+
+
   }
 }

@@ -85,14 +85,14 @@ namespace hr_system_backend.Controllers
     }
     [Authorize]
     [HttpPut("update-password")]
-    public async Task<ActionResult<Response<GetAdminCredDto>>> UpdateAdminPassword([FromBody] string newPassword)
+    public async Task<ActionResult<Response<string>>> UpdateAdminPassword([FromBody] AdminLoginDto admin)
     {
-      var newAdminCred = await this.adminService.ChangeAdminPassword(newPassword);
+      var newAdminCred = await this.adminService.ChangeAdminPassword(admin.Password);
       if (newAdminCred is null)
       {
-        return NotFound("Not found");
+        return BadRequest("Invalid data");
       }
-      var res = new Response<GetAdminCredDto>
+      var res = new Response<string>
       {
         Data = newAdminCred
       };

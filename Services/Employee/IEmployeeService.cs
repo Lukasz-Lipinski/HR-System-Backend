@@ -11,6 +11,8 @@ namespace hr_system_backend.Services
     public Task<GetEmployeeDto> UpdateSuperior(Guid employeeId, Superior superior);
     public Task<Employee> GetEmployee(Guid employeeId);
     public Task<Superior> GetSuperiorById(Guid superiorId);
+    public Task<GetEmployeeDto> CreateEmployee(CreateEmployeeDto employee);
+    public Task<Employee> CheckEmail(string email);
 
   }
 }

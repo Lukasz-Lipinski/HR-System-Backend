@@ -9,7 +9,7 @@ namespace hr_system_backend.Services
     public Task<GetAdminCredDto> GetAdminCredential();
     public Task<GetAdminCredDto> UpdateAdminCred(UpdateAdminCredDto newAdminCred);
     public Task<GetAdminCredDto> ChangeAdminEmail(string ChangeAdminEmail);
-    public Task<GetAdminCredDto> ChangeAdminPassword(string newPassword);
+    public Task<string> ChangeAdminPassword(string newPassword);
     public Task<bool> CheckAdminEmail(string email);
   }
 }

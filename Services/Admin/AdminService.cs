@@ -89,12 +89,16 @@ namespace hr_system_backend.Services
       return this.mapper.Map<GetAdminCredDto>(admin);
     }
 
-    public async Task<GetAdminCredDto> ChangeAdminPassword(string newPassword)
+    public async Task<string> ChangeAdminPassword(string newPassword)
     {
       var admin = await this.dbContext.Admins.FirstOrDefaultAsync(a => a.Id.ToString() == this.GetAdminId());
+      if (admin is null)
+      {
+        return null;
+      }
       admin.Password = this.authService.HashPassword(newPassword);
       await this.dbContext.SaveChangesAsync();
-      return this.mapper.Map<GetAdminCredDto>(admin);
+      return "Password changed successfully";
     }
 
     public async Task<bool> CheckAdminEmail(string email)

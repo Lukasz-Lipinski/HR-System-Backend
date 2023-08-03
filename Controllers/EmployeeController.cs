@@ -93,5 +93,40 @@ namespace hr_system_backend.Controllers
       var updatedEmployeeCred = this.mapper.Map<GetEmployeeDto>(this.employeeService.GetEmployee(employeeId));
       return Ok(updatedEmployeeCred);
     }
+    [Authorize]
+    [HttpPost("create")]
+    public async Task<ActionResult<Response<GetEmployeeDto>>> Create([FromBody] CreateEmployeeDto employeeData)
+    {
+      var employee = await this.employeeService.CreateEmployee(employeeData);
+
+      if (employee is null)
+      {
+        return NotFound("Invalid superior");
+      }
+
+      var res = new Response<GetEmployeeDto>
+      {
+        Data = this.mapper.Map<GetEmployeeDto>(employee)
+      };
+      return Created("", res);
+
+    }
+    [Authorize]
+    [HttpPost("check-email")]
+    public async Task<ActionResult<Response<GetEmployeeDto>>> CheckEmail([FromBody] AdminLoginDto cred)
+    {
+      var employee = await this.employeeService.CheckEmail(cred.Email);
+
+      if (employee is null)
+      {
+        return NotFound("Invalid email");
+      }
+
+      var res = new Response<GetEmployeeDto>
+      {
+        Data = this.mapper.Map<GetEmployeeDto>(employee)
+      };
+      return Ok(res);
+    }
   }
 }
