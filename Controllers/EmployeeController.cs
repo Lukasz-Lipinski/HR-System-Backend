@@ -32,7 +32,7 @@ namespace hr_system_backend.Controllers
       return Ok(res);
     }
     [Authorize]
-    [HttpGet("{phrase}")]
+    [HttpGet("find-by/{phrase}")]
     public async Task<ActionResult<Response<List<GetEmployeeDto>>>> FindByPhrase(string phrase)
     {
       var employees = await this.employeeService.FindByPhrase(phrase);

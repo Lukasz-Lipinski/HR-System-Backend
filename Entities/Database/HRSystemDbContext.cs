@@ -1,3 +1,5 @@
+using hr_system_backend.Services.FakeData;
+
 namespace hr_system_backend.Entities.Database
 {
   public class HRSystemDbContext : DbContext
@@ -13,6 +15,16 @@ namespace hr_system_backend.Entities.Database
     {
       modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
 
+      /**
+        Seeding data to DB
+        If you'd like to seed data, uncomment the lines below
+
+        FakeData.GenerateFakeSuperiors();
+        FakeData.GenerateFakeEmployees();
+
+        modelBuilder.Entity<Superior>().HasData(FakeData.Superiors);
+        modelBuilder.Entity<Employee>().HasData(FakeData.Employees);
+      */
     }
   }
 }

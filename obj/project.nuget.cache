@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "Pzxo9liDFeYYSsiq7VWwzAb7UArLdB+sbXobNtoS7T+g1fXRLvLdR/LkWI3XAHS3Wq871/0/PrOLTRdgYx4kxQ==",
+  "dgSpecHash": "VGZwoq55AhSutEvane5wO8RdEvMYpLw08/K0xIU1DpT04lTI5LMz7jvFxGuexqA9h4iCf1hCeM3WHUZ0uNKQBw==",
   "success": true,
-  "projectFilePath": "C:\\Projects\\Fullstack\\hr-system\\Backend\\hr-system-backend.csproj",
+  "projectFilePath": "C:\\Projects\\Fullstack\\HR-System\\HR-System-Backend\\hr-system-backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\llipinsk\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\llipinsk\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\llipinsk\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\llipinsk\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\llipinsk\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
+    "C:\\Users\\llipinsk\\.nuget\\packages\\bogus\\34.0.2\\bogus.34.0.2.nupkg.sha512",
     "C:\\Users\\llipinsk\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\llipinsk\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\llipinsk\\.nuget\\packages\\mailkit\\4.1.0\\mailkit.4.1.0.nupkg.sha512",

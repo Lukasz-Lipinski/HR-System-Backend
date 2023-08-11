@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\Fullstack\\hr-system\\Backend\\hr-system-backend.csproj": {}
+    "C:\\Projects\\Fullstack\\HR-System\\HR-System-Backend\\hr-system-backend.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\Fullstack\\hr-system\\Backend\\hr-system-backend.csproj": {
+    "C:\\Projects\\Fullstack\\HR-System\\HR-System-Backend\\hr-system-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Fullstack\\hr-system\\Backend\\hr-system-backend.csproj",
+        "projectUniqueName": "C:\\Projects\\Fullstack\\HR-System\\HR-System-Backend\\hr-system-backend.csproj",
         "projectName": "hr-system-backend",
-        "projectPath": "C:\\Projects\\Fullstack\\hr-system\\Backend\\hr-system-backend.csproj",
+        "projectPath": "C:\\Projects\\Fullstack\\HR-System\\HR-System-Backend\\hr-system-backend.csproj",
         "packagesPath": "C:\\Users\\llipinsk\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Fullstack\\hr-system\\Backend\\obj\\",
+        "outputPath": "C:\\Projects\\Fullstack\\HR-System\\HR-System-Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\llipinsk\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -49,6 +49,10 @@
             "BCrypt.Net-Next": {
               "target": "Package",
               "version": "[4.0.3, )"
+            },
+            "Bogus": {
+              "target": "Package",
+              "version": "[34.0.2, )"
             },
             "MailKit": {
               "target": "Package",
@@ -114,7 +118,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -88,6 +88,19 @@
           }
         }
       },
+      "Bogus/34.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Bogus.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Bogus.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "BouncyCastle.Cryptography/2.2.1": {
         "type": "package",
         "compile": {
@@ -1533,6 +1546,25 @@
         "lib/netstandard2.1/BCrypt.Net-Next.dll",
         "lib/netstandard2.1/BCrypt.Net-Next.xml",
         "readme.md"
+      ]
+    },
+    "Bogus/34.0.2": {
+      "sha512": "2KQAuMn3fLAQ2r6jeiffZnpv0bi3GCW3iRB2v1KeHIEBu8MNTh9dBlLTZwGvM0pr+9doKkU8L5JgCURmTmT88A==",
+      "type": "package",
+      "path": "bogus/34.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bogus.34.0.2.nupkg.sha512",
+        "bogus.nuspec",
+        "lib/net40/Bogus.dll",
+        "lib/net40/Bogus.xml",
+        "lib/net6.0/Bogus.dll",
+        "lib/net6.0/Bogus.xml",
+        "lib/netstandard1.3/Bogus.dll",
+        "lib/netstandard1.3/Bogus.xml",
+        "lib/netstandard2.0/Bogus.dll",
+        "lib/netstandard2.0/Bogus.xml"
       ]
     },
     "BouncyCastle.Cryptography/2.2.1": {
@@ -4378,6 +4410,7 @@
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "BCrypt.Net-Next >= 4.0.3",
+      "Bogus >= 34.0.2",
       "MailKit >= 4.1.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.5",
       "Microsoft.AspNetCore.OpenApi >= 7.0.5",
@@ -4396,11 +4429,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Projects\\Fullstack\\hr-system\\Backend\\hr-system-backend.csproj",
+      "projectUniqueName": "C:\\Projects\\Fullstack\\HR-System\\HR-System-Backend\\hr-system-backend.csproj",
       "projectName": "hr-system-backend",
-      "projectPath": "c:\\Projects\\Fullstack\\hr-system\\Backend\\hr-system-backend.csproj",
+      "projectPath": "C:\\Projects\\Fullstack\\HR-System\\HR-System-Backend\\hr-system-backend.csproj",
       "packagesPath": "C:\\Users\\llipinsk\\.nuget\\packages\\",
-      "outputPath": "c:\\Projects\\Fullstack\\hr-system\\Backend\\obj\\",
+      "outputPath": "C:\\Projects\\Fullstack\\HR-System\\HR-System-Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\llipinsk\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -4438,6 +4471,10 @@
           "BCrypt.Net-Next": {
             "target": "Package",
             "version": "[4.0.3, )"
+          },
+          "Bogus": {
+            "target": "Package",
+            "version": "[34.0.2, )"
           },
           "MailKit": {
             "target": "Package",
@@ -4503,7 +4540,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

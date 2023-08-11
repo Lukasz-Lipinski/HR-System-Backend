@@ -1,3 +1,4 @@
+using hr_system_backend.Services.FakeData;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace hr_system_backend.Entities.Database.Configurations
@@ -6,8 +7,6 @@ namespace hr_system_backend.Entities.Database.Configurations
   {
     public void Configure(EntityTypeBuilder<Employee> builder)
     {
-      Guid superiorID = Guid.NewGuid();
-
       builder.Property(e => e.Daysoff).IsRequired();
       builder.Property(e => e.Email).IsRequired();
       builder.Property(e => e.Name).IsRequired();
@@ -15,7 +14,6 @@ namespace hr_system_backend.Entities.Database.Configurations
       builder.Property(e => e.Status).IsRequired();
       builder.Property(e => e.Id).IsRequired();
       builder.Property(e => e.Surname).IsRequired();
-
     }
   }
 }

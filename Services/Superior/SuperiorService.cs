@@ -1,3 +1,5 @@
+using System.Data;
+using Bogus;
 using hr_system_backend.Entities;
 
 namespace hr_system_backend.Services
@@ -31,14 +33,13 @@ namespace hr_system_backend.Services
           .Include(s => s.Employees)
           .ToListAsync();
       return superiors.Count == 0 ? null : superiors; ;
-
-
     }
 
     public async Task<List<Superior>> GetAllSuperiors()
     {
       return await this.dbContext.Superiors.AsNoTracking().Include(s => s.Employees).ToListAsync();
     }
+
 
   }
 }
