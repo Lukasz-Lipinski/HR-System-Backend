@@ -31,6 +31,7 @@ namespace hr_system_backend.Controllers
 
       return Ok(res);
     }
+
     [Authorize]
     [HttpGet("find-by/{phrase}")]
     public async Task<ActionResult<Response<List<GetEmployeeDto>>>> FindByPhrase(string phrase)
@@ -128,5 +129,24 @@ namespace hr_system_backend.Controllers
       };
       return Ok(res);
     }
+    [Authorize]
+    [HttpDelete("delete-user/{id}")]
+    public async Task<ActionResult<Response<string>>> DeleteUser(string id)
+    {
+      var isDeleted = await this.employeeService.DeleteEmployee(id);
+
+      if (isDeleted is null)
+      {
+        return NotFound("Invalid id");
+      }
+
+      var res = new Response<string>
+      {
+        Data = isDeleted
+      };
+
+      return Ok(res);
+    }
   }
+
 }

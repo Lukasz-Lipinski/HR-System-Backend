@@ -13,6 +13,7 @@ namespace hr_system_backend.Services
     public Task<Superior> GetSuperiorById(Guid superiorId);
     public Task<GetEmployeeDto> CreateEmployee(CreateEmployeeDto employee);
     public Task<Employee> CheckEmail(string email);
+    public Task<string> DeleteEmployee(string id);
 
   }
 }

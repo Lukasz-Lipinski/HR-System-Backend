@@ -135,6 +135,17 @@ namespace hr_system_backend.Services
 
     public Task<Employee> CheckEmail(string email) => this.dbContext.Employees.AsNoTracking().FirstOrDefaultAsync(e => e.Email == email);
 
+    public async Task<string> DeleteEmployee(string id)
+    {
+      var employee = await this.GetEmployee(Guid.Parse(id));
+      if (employee is null)
+      {
+        return null;
+      }
+      this.dbContext.Attach(employee).State = EntityState.Deleted;
+      await this.dbContext.SaveChangesAsync();
 
+      return "Employee deleted";
+    }
   }
 }
